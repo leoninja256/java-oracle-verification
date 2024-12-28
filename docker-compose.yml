@@ -1,0 +1,16 @@
+services:
+  oracledb:
+    image: "container-registry.oracle.com/database/express:21.3.0-xe"
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    volumes:
+      # ホストディレクトリへのマウントじゃないと/opt/oracle/scripts/setupやORACLE_CHARACTERSETが効かない
+      # - oradata:/opt/oracle/oradata
+      - ./oracle-sjis:/opt/oracle/oradata
+      - ./oracle-startup:/opt/oracle/scripts/startup
+    environment:
+      ORACLE_PWD: ora_pass
+      ORACLE_CHARACTERSET: JA16SJISTILDE
+volumes:
+  oradata:

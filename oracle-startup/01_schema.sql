@@ -1,0 +1,14 @@
+ALTER SESSION SET CONTAINER=XEPDB1;
+
+CREATE USER sample_user1 IDENTIFIED BY "sample_pass"
+       DEFAULT TABLESPACE USERS
+       TEMPORARY TABLESPACE TEMP;
+
+GRANT DBA TO sample_user1;
+
+CREATE TABLE sample_user1.sample (
+    id VARCHAR2(36) NOT NULL,
+    str1 VARCHAR2(12),
+    str2 VARCHAR2(16),
+    PRIMARY KEY (id)
+);
